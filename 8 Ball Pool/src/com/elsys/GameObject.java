@@ -1,16 +1,19 @@
 package com.elsys;
 
 import java.awt.*;
+import java.io.IOException;
 
 public abstract class GameObject {
     int x, y;
     float velX = 0, velY = 0;
     String type;
+    Image image;
 
-    public GameObject(int x, int y, String type) {
+    public GameObject(int x, int y, String type, Image image) throws IOException {
         this.x = x;
         this.y = y;
         this.type = type;
+        this.image = image;
     }
 
     abstract void tick();
