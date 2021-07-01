@@ -10,10 +10,13 @@ public class Game extends Canvas implements Runnable {
     private boolean isRunning = false;
     private Thread thread;
     private Image board;
+    private Image whiteBall;
 
     Game() throws IOException {
         new Window("Game", 914, 546, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
+        this.whiteBall = ImageIO.read(new File("./resources/whiteBall.png"));
+        this.whiteBall = this.whiteBall.getScaledInstance(20,20, Image.SCALE_FAST);
         start();
     }
 
@@ -79,6 +82,7 @@ public class Game extends Canvas implements Runnable {
         g.setColor(Color.white);
         g.fillRect(0 ,0, 900, 509);
         g.drawImage(board, 0, 0, null, null);
+        g.drawImage(whiteBall, 720,240,null,null);
 
         ////////////////////////////////
         g.dispose();
