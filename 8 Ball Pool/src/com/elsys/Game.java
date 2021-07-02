@@ -9,11 +9,12 @@ public class Game extends Canvas implements Runnable{
     private boolean isRunning = false;
     private Thread thread;
     private Image board;
-    private WhiteBall whiteBall = new WhiteBall();
+    private BallHandler ballHandler;
 
     Game() throws Exception {
         new Window("Game", 914, 546, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
+        this.ballHandler = new BallHandler();
         start();
     }
 
@@ -62,7 +63,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     public void tick(){
-        // do ticks here
+        ballHandler.tick();
     }
 
     public void render() {
@@ -79,8 +80,7 @@ public class Game extends Canvas implements Runnable{
         g.setColor(Color.white);
         g.fillRect(0 ,0, 900, 509);
         g.drawImage(board, 0, 0, null, null);
-        whiteBall.render(g);
-
+        ballHandler.render(g);
         ////////////////////////////////
         g.dispose();
         bs.show();

@@ -2,13 +2,13 @@ package com.elsys;
 
 import java.awt.*;
 
-public abstract class GameObject {
+public abstract class Ball {
     int x, y;
     float velX = 0, velY = 0;
     String type;
     Image image;
 
-    public GameObject(int x, int y, String type, Image image){
+    public Ball(int x, int y, String type, Image image){
         this.x = x;
         this.y = y;
         this.type = type;
