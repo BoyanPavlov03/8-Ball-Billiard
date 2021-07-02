@@ -6,17 +6,20 @@ import java.io.File;
 
 public class WhiteBall extends Ball{
     public WhiteBall() throws Exception {
-        super(300, 300,"whiteBall", ImageIO.read(new File("./resources/whiteBall.png")));
-        this.image = this.image.getScaledInstance(20,20, Image.SCALE_FAST);
+        super(720, 240,"whiteBall", ImageIO.read(new File("./resources/whiteBall.png")), 0);
+        velX = 100;
     }
+    public void tick(){
 
-    @Override
-    void tick() {
+        if(x < Main.left){
+            velX = -velX;
+        }
 
-    }
+        if(x > Main.right){
+            velX = -velX;
+        }
 
-    @Override
-    void render(Graphics g) {
-        g.drawImage(image, 720,240,null,null);
+        x -= velX;
+
     }
 }

@@ -2,21 +2,29 @@ package com.elsys;
 
 import java.awt.*;
 
-public abstract class Ball {
+public class Ball {
     int x, y;
     float velX = 0, velY = 0;
     String type;
     Image image;
+    int number;
 
-    public Ball(int x, int y, String type, Image image){
+    public Ball(int x, int y, String type, Image image, int number){
         this.x = x;
         this.y = y;
         this.type = type;
         this.image = image;
+        this.number = number;
+        this.image = this.image.getScaledInstance(30,30, Image.SCALE_FAST);
     }
 
-    abstract void tick();
-    abstract void render(Graphics g);
+    void tick() {
+
+    }
+
+    void render(Graphics g) {
+        g.drawImage(image, x,y,null,null);
+    }
 
     public int getX() {
         return x;
@@ -49,4 +57,8 @@ public abstract class Ball {
     public void setVelY(float velY) {
         this.velY = velY;
     }
+
+    public int getNumber() { return number; }
+
+    public void setNumber(int number) { this.number = number; }
 }
