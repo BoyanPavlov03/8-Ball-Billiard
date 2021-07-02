@@ -25,13 +25,9 @@ public class Game extends Canvas implements Runnable{
         thread.start();
     }
 
-    private void stop() {
+    private void stop() throws Exception {
         isRunning = false;
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        thread.join();
     }
 
     @Override
@@ -60,6 +56,7 @@ public class Game extends Canvas implements Runnable{
                 frames = 0;
             }
         }
+
         stop();
     }
 
@@ -82,6 +79,7 @@ public class Game extends Canvas implements Runnable{
         g.fillRect(0 ,0, 900, 509);
         g.drawImage(board, 0, 0, null, null);
         ballHandler.render(g);
+
         ////////////////////////////////
         g.dispose();
         bs.show();
