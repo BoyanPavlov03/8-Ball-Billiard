@@ -57,7 +57,11 @@ public class Game extends Canvas implements Runnable{
             }
         }
 
-        stop();
+        try {
+            stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void tick(){
