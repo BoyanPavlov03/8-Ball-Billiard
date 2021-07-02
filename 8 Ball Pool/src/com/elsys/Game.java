@@ -4,15 +4,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.File;
-import java.io.IOException;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable{
     private boolean isRunning = false;
     private Thread thread;
     private Image board;
     private WhiteBall whiteBall = new WhiteBall();
 
-    Game() throws IOException {
+    Game() throws Exception {
         new Window("Game", 914, 546, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
         start();

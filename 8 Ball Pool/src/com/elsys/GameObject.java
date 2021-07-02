@@ -1,7 +1,6 @@
 package com.elsys;
 
 import java.awt.*;
-import java.io.IOException;
 
 public abstract class GameObject {
     int x, y;
@@ -9,7 +8,7 @@ public abstract class GameObject {
     String type;
     Image image;
 
-    public GameObject(int x, int y, String type, Image image) throws IOException {
+    public GameObject(int x, int y, String type, Image image){
         this.x = x;
         this.y = y;
         this.type = type;

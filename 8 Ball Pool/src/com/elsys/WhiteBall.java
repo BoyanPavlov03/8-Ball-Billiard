@@ -3,10 +3,9 @@ package com.elsys;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 public class WhiteBall extends GameObject{
-    public WhiteBall() throws IOException {
+    public WhiteBall() throws Exception {
         super(300, 300,"whiteBall", ImageIO.read(new File("./resources/whiteBall.png")));
         this.image = this.image.getScaledInstance(20,20, Image.SCALE_FAST);
     }
