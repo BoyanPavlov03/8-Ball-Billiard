@@ -3,19 +3,20 @@ package com.elsys;
 import java.awt.*;
 
 public class Ball {
-    int x, y;
-    float velX = 0, velY = 0;
+    Vector2D position;
+    Vector2D velocity;
     String type;
     Image image;
     int number;
+    int radius;
 
-    public Ball(int x, int y, String type, Image image, int number){
-        this.x = x;
-        this.y = y;
+    public Ball(Vector2D position, Vector2D velocity, String type, Image image, int number) {
+        this.position = position;
+        this.velocity = velocity;
         this.type = type;
-        this.image = image;
         this.number = number;
-        this.image = this.image.getScaledInstance(30,30, Image.SCALE_FAST);
+        this.radius = 15;
+        this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
     }
 
     void tick() {
@@ -23,42 +24,8 @@ public class Ball {
     }
 
     void render(Graphics g) {
-        g.drawImage(image, x,y,null,null);
+        g.drawImage(image,(int)position.x, (int)position.y,null,null);
     }
 
-    public int getX() {
-        return x;
-    }
 
-    public int getY() {
-        return y;
-    }
-
-    public float getVelX() {
-        return velX;
-    }
-
-    public float getVelY() {
-        return velY;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setVelX(float velX) {
-        this.velX = velX;
-    }
-
-    public void setVelY(float velY) {
-        this.velY = velY;
-    }
-
-    public int getNumber() { return number; }
-
-    public void setNumber(int number) { this.number = number; }
 }

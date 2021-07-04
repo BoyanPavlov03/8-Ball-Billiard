@@ -11,11 +11,15 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
     private Image board;
     private BallHandler ballHandler;
+    static double friction = 0.02;
+    static double gravity = 9.8;
+    static double ticks = 300;
 
     Game() throws Exception {
         new Window("Game", 914, 546, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
         this.ballHandler = new BallHandler();
+        this.addKeyListener(new KeyInput(ballHandler.getWhiteBall()));
         start();
     }
 
@@ -34,7 +38,7 @@ public class Game extends Canvas implements Runnable{
     public void run() {
         this.requestFocus();
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        double amountOfTicks = ticks;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
