@@ -19,6 +19,7 @@ public class Game extends Canvas implements Runnable{
         new Window("Game", 914, 546, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
         this.ballHandler = new BallHandler();
+        this.addMouseListener(new MouseInput(ballHandler));
         this.addKeyListener(new KeyInput(ballHandler.getWhiteBall()));
         start();
     }

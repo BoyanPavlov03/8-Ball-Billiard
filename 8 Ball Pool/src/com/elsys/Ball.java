@@ -27,5 +27,4 @@ public class Ball {
         g.drawImage(image,(int)position.x, (int)position.y,null,null);
     }
 
-
 }

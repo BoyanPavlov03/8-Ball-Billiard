@@ -17,6 +17,16 @@ public class BallHandler {
         balls.remove(ball);
     }
 
+    public boolean checkForMovement() {
+        for (Ball ball : balls) {
+            if (ball.velocity.x == 0 && ball.velocity.y == 0) {
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
+
     public void tick(){
         for(Ball ball : balls){
             ball.tick();

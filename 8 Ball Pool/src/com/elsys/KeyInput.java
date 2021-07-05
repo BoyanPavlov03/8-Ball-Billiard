@@ -12,8 +12,5 @@ public class KeyInput extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        if(key == KeyEvent.VK_A)
-            a.isMoving = !a.isMoving;
     }
 }

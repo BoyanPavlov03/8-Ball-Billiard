@@ -5,14 +5,16 @@ import java.awt.*;
 import java.io.File;
 
 public class WhiteBall extends Ball {
-    boolean isMoving = false;
     public WhiteBall() throws Exception {
-        super(new Vector2D(720, 240), new Vector2D(0.5,0.5),"whiteBall", ImageIO.read(new File("./resources/whiteBall.png")), 0);
+        super(new Vector2D(720, 240), new Vector2D(0.0,0.0),"whiteBall", ImageIO.read(new File("./resources/whiteBall.png")), 0);
 
     }
+
+    void setVelocity(Vector2D v) {
+        this.velocity = v;
+    }
+
     public void tick(){
-        if(!isMoving)
-            return;
         Vector2D temp = position.plus(velocity);
         if(temp.y < Main.top || temp.y > Main.bottom)
             velocity.y = -velocity.y;
@@ -28,6 +30,7 @@ public class WhiteBall extends Ball {
         if(Double.isNaN(s))
             s = 0;
         velocity.multiply(s);
-
     }
+
+
 }

@@ -26,6 +26,10 @@ public class Vector2D {
         return this;
     }
 
+    public Vector2D normalize() {
+        return this.multiply(1 / this.length());
+    }
+
     @Override
     public String toString() {
         return "Vector2D{" +
