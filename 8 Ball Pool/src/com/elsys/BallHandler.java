@@ -27,9 +27,27 @@ public class BallHandler {
         return true;
     }
 
+    public void updateV(Ball a, Ball b, Vector2D v1, Vector2D v2){
+        Vector2D X = a.position.plus(b.position.opposite());
+        Vector2D V = v1.plus(v2.opposite());
+        a.velocity.add(X.times(X.dot(V) / X.dot(X)).opposite());
+        b.velocity.add(X.times(X.dot(V) / X.dot(X)));
+
+    }
+
     public void tick(){
         for(Ball ball : balls){
             ball.tick();
+            //check for collision
+            for(Ball b : balls) {
+                if (!ball.equals(b) && ball.hitbox.getBounds2D().intersects(b.hitbox.getBounds2D())) {
+                    Vector2D v1 = new Vector2D(ball.velocity);
+                    Vector2D v2 = new Vector2D(b.velocity);
+                    updateV(ball, b, v1, v2);
+
+                }
+            }
+            System.out.println();
         }
     }
 

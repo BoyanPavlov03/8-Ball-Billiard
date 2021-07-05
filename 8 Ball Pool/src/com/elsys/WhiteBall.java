@@ -14,23 +14,4 @@ public class WhiteBall extends Ball {
         this.velocity = v;
     }
 
-    public void tick(){
-        Vector2D temp = position.plus(velocity);
-        if(temp.y < Main.top || temp.y > Main.bottom)
-            velocity.y = -velocity.y;
-        if(temp.x < Main.left || temp.x > Main.right)
-            velocity.x = -velocity.x;
-
-        position.add(velocity);
-        double velocitySquared = velocity.times(Game.ticks / 100).dot(velocity); // make it into meters/seconds
-        double length = velocity.length() / 100; // make into meters
-        if(length <= 0)
-            return; // the ball is not moving
-        double s = Math.sqrt((velocitySquared - length * Game.friction * Game.gravity) / velocitySquared); // more physics....
-        if(Double.isNaN(s))
-            s = 0;
-        velocity.multiply(s);
-    }
-
-
 }
