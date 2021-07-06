@@ -21,6 +21,9 @@ public class Ball {
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
         this.hitbox = new Rectangle2D.Double(position.x, position.y, 2 * radius, 2 * radius);
     }
+    public boolean hit(Ball b){
+        return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
+    }
 
     void tick() {
         Vector2D temp = position.plus(velocity);
@@ -30,11 +33,11 @@ public class Ball {
             velocity.x = -velocity.x;
 
         position.add(velocity);
-        double velocitySquared = velocity.times(Main.ticks / 100).dot(velocity); // make it into meters/seconds
+        double velocitySquared = velocity.times(Main.ticks * Main.ticks / 10000).dot(velocity);
         double length = velocity.length() / 100; // make into meters
         if(length <= 0)
             return; // the ball is not moving
-        double s = Math.sqrt((velocitySquared - length * Main.friction * Main.gravity) / velocitySquared); // more physics....
+        double s = Math.sqrt((velocitySquared - length * Main.friction * Main.gravity - 0.25 * velocitySquared * 17 * 0.09 * length) / velocitySquared); // more physics....
         if(Double.isNaN(s))
             s = 0;
         velocity.multiply(s);
