@@ -16,6 +16,11 @@ public class Vector2D {
         return this;
     }
 
+    public Vector2D(Vector2D a){
+        this.x = a.x;
+        this.y = a.y;
+    }
+
     public double dot(Vector2D a){
         return x * a.x + y * a.y;
     }
@@ -48,5 +53,6 @@ public class Vector2D {
     public Vector2D times(double a){
         return new Vector2D(x * a, y * a);
     }
+    public Vector2D opposite(){return new Vector2D(-x, -y);}
 
 }
