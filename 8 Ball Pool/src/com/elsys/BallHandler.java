@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class BallHandler {
     private LinkedList<Ball> balls;
     private HashMap<Ball,Vector2D> velocities = new HashMap<>();
+    private LinkedList<Boolean> ballsOnBoard = new LinkedList<>();
 
     public BallHandler() throws Exception {
         balls = new LinkedList<>();
@@ -54,7 +55,8 @@ public class BallHandler {
         }
         for(Ball ball : balls){
             ball.tick();
-            velocities.replace(ball, new Vector2D(ball.velocity));
+            if(balls.contains(ball))
+                velocities.replace(ball, new Vector2D(ball.velocity));
         }
     }
 
@@ -65,23 +67,23 @@ public class BallHandler {
     }
 
     void setupBalls() throws Exception {
-        WhiteBall whiteBall = new WhiteBall();
+        WhiteBall whiteBall = new WhiteBall(this);
         balls.add(whiteBall);
-        balls.add(new Ball(new Vector2D(150, 180), new Vector2D(0,0),"big", ImageIO.read(new File("./resources/ball 11.png")), 11));
-        balls.add(new Ball(new Vector2D(150.2, 210.2), new Vector2D(0,0),"small", ImageIO.read(new File("./resources/ball 2.png")), 2));
-        balls.add(new Ball(new Vector2D(150.4, 240.4), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 13.png")), 13));
-        balls.add(new Ball(new Vector2D(150.6, 270.6), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 4.png")), 4));
-        balls.add(new Ball(new Vector2D(150.8, 300.8), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 5.png")), 5));
-        balls.add(new Ball(new Vector2D(180, 195), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 6.png")), 6));
-        balls.add(new Ball(new Vector2D(180.2, 225.2), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 10.png")), 10));
-        balls.add(new Ball(new Vector2D(180.4, 255.4), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 3.png")), 3));
-        balls.add(new Ball(new Vector2D(180.6, 285.6), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 14.png")), 14));
-        balls.add(new Ball(new Vector2D(210, 210), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 15.png")), 15));
-        balls.add(new Ball(new Vector2D(210.2, 240.2), new Vector2D(0,0),"blackBall", ImageIO.read(new File("./resources/ball 8.png")), 8));
-        balls.add(new Ball(new Vector2D(210.4, 270.4), new Vector2D(0,0),"small", ImageIO.read(new File("./resources/ball 1.png")), 1));
-        balls.add(new Ball(new Vector2D(240, 225), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 7.png")), 7));
-        balls.add(new Ball(new Vector2D(240.2, 255.2), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 12.png")), 12));
-        balls.add(new Ball(new Vector2D(270, 240), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 9.png")), 9));
+        balls.add(new Ball(new Vector2D(150, 180), new Vector2D(0,0),"big", ImageIO.read(new File("./resources/ball 11.png")), 11, this));
+        balls.add(new Ball(new Vector2D(150.2, 210.2), new Vector2D(0,0),"small", ImageIO.read(new File("./resources/ball 2.png")), 2, this));
+        balls.add(new Ball(new Vector2D(150.4, 240.4), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 13.png")), 13, this));
+        balls.add(new Ball(new Vector2D(150.6, 270.6), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 4.png")), 4, this));
+        balls.add(new Ball(new Vector2D(150.8, 300.8), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 5.png")), 5, this));
+        balls.add(new Ball(new Vector2D(180, 195), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 6.png")), 6, this));
+        balls.add(new Ball(new Vector2D(180.2, 225.2), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 10.png")), 10, this));
+        balls.add(new Ball(new Vector2D(180.4, 255.4), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 3.png")), 3, this));
+        balls.add(new Ball(new Vector2D(180.6, 285.6), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 14.png")), 14, this));
+        balls.add(new Ball(new Vector2D(210, 210), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 15.png")), 15, this));
+        balls.add(new Ball(new Vector2D(210.2, 240.2), new Vector2D(0,0),"blackBall", ImageIO.read(new File("./resources/ball 8.png")), 8, this));
+        balls.add(new Ball(new Vector2D(210.4, 270.4), new Vector2D(0,0),"small", ImageIO.read(new File("./resources/ball 1.png")), 1, this));
+        balls.add(new Ball(new Vector2D(240, 225), new Vector2D(0, 0),"small", ImageIO.read(new File("./resources/ball 7.png")), 7, this));
+        balls.add(new Ball(new Vector2D(240.2, 255.2), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 12.png")), 12, this));
+        balls.add(new Ball(new Vector2D(270, 240), new Vector2D(0, 0),"big", ImageIO.read(new File("./resources/ball 9.png")), 9, this));
         for(Ball b: balls) {
             velocities.put(b, new Vector2D(b.velocity));
         }
