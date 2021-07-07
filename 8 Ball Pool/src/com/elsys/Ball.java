@@ -27,7 +27,14 @@ public class Ball {
         return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
     }
 
-    void tick() {
+    void setPosition(Vector2D position)
+    {
+        this.position.x = position.x;
+        this.position.y = position.y;
+    }
+
+    boolean tick() {
+        //Returns true if a ball has been potted and false if not
         Vector2D temp = position.plus(velocity);
 
         if(temp.y < Main.top && temp.x > (Main.left + 10) && temp.x < 420){
@@ -52,20 +59,22 @@ public class Ball {
         if(temp.y < Main.top && temp.x > 420 && temp.x < 465){
             velocity.x = 0;
             velocity.y = 0;
-            if(this instanceof WhiteBall){
-                return;
+            if(this instanceof WhiteBall) {
+                setPosition(new Vector2D(720, 240));
+                return false;
             }
-            //ballHandler.removeBall(this);
-            return;
+            ballHandler.removeBall(this);
+            return true;
         }
         if(temp.y > Main.bottom && temp.x > 420 && temp.x < 465){
             velocity.x = 0;
             velocity.y = 0;
             if(this instanceof WhiteBall){
-                return;
+                setPosition(new Vector2D(720, 240));
+                return false;
             }
-            //ballHandler.removeBall(this);
-            return;
+            ballHandler.removeBall(this);
+            return true;
         }
 
         //if(temp.x > Main.right && (temp.y < Main.top + 20 )) {
@@ -82,13 +91,14 @@ public class Ball {
         double velocitySquared = velocity.times(Main.ticks * Main.ticks / 10000).dot(velocity);
         double length = velocity.length() / 100; // make into meters
         if(length <= 0)
-            return; // the ball is not moving
+            return false; // the ball is not moving
         double s = Math.sqrt((velocitySquared - length * Main.friction * Main.gravity - 0.25 * velocitySquared * 17 * 0.09 * length) / velocitySquared); // more physics....
         if(Double.isNaN(s))
             s = 0;
         velocity.multiply(s);
         hitbox.x += velocity.x;
         hitbox.y += velocity.y;
+        return false;
     }
 
     void render(Graphics g) {

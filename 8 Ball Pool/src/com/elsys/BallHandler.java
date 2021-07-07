@@ -20,6 +20,11 @@ public class BallHandler {
         balls.remove(ball);
     }
 
+    int getTotalBalls()
+    {
+        return this.balls.size();
+    }
+
     public boolean checkForMovement() {
         for (Ball ball : balls) {
             if (ball.velocity.x == 0 && ball.velocity.y == 0) {
@@ -53,10 +58,13 @@ public class BallHandler {
                 }
             }
         }
-        for(Ball ball : balls){
-            ball.tick();
-            if(balls.contains(ball))
-                velocities.replace(ball, new Vector2D(ball.velocity));
+        for(int i = 0; i < getTotalBalls(); i++){
+            if(balls.get(i).tick())
+            {
+                i--;
+                continue;
+            }
+            velocities.replace(balls.get(i), new Vector2D(balls.get(i).velocity));
         }
     }
 
