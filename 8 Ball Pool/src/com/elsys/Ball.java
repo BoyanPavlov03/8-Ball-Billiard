@@ -69,10 +69,10 @@ public class Ball {
         }
 
 
-        if(temp.y + 14 < Main.top && temp.x + 14 > 420 && temp.x + 14 < 465){
+        if(temp.y < Main.top && temp.x + 14 > 420 && temp.x + 14 < 465){
             return DeleteBall();
         }
-        if(temp.y - 14 > Main.bottom && temp.x + 14 > 420 && temp.x + 14 < 465){
+        if(temp.y > Main.bottom && temp.x + 14 > 420 && temp.x + 14 < 465){
             return DeleteBall();
         }
         for(int i = 0; i < 30; i++) {
