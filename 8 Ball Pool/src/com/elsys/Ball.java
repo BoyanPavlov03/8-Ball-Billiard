@@ -27,6 +27,18 @@ public class Ball {
         return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
     }
 
+    public boolean DeleteBall(){
+        velocity.x = 0;
+        velocity.y = 0;
+        if(this instanceof WhiteBall){
+            setPosition(new Vector2D(720, 240));
+            return false;
+        }
+        ballHandler.removeBall(this);
+        return true;
+    }
+
+
     void setPosition(Vector2D position)
     {
         this.position.x = position.x;
@@ -56,30 +68,28 @@ public class Ball {
             velocity.x = -velocity.x;
         }
 
-        if(temp.y < Main.top && temp.x > 420 && temp.x < 465){
-            velocity.x = 0;
-            velocity.y = 0;
-            if(this instanceof WhiteBall) {
-                setPosition(new Vector2D(720, 240));
-                return false;
-            }
-            ballHandler.removeBall(this);
-            return true;
+
+        if(temp.y + 14 < Main.top && temp.x + 14 > 420 && temp.x + 14 < 465){
+            return DeleteBall();
         }
-        if(temp.y > Main.bottom && temp.x > 420 && temp.x < 465){
-            velocity.x = 0;
-            velocity.y = 0;
-            if(this instanceof WhiteBall){
-                setPosition(new Vector2D(720, 240));
-                return false;
+        if(temp.y - 14 > Main.bottom && temp.x + 14 > 420 && temp.x + 14 < 465){
+            return DeleteBall();
+        }
+        for(int i = 0; i < 30; i++) {
+            if(temp.y - 14 > (Main.bottom - 30) + i && temp.x - 14 < (Main.left - 20) + i) {
+                return DeleteBall();
             }
-            ballHandler.removeBall(this);
-            return true;
+            if(temp.y - 14 > (Main.bottom - 30) + i && temp.x + 14 > (Main.right + 20) - i) {
+                return DeleteBall();
+            }
+            if(temp.y + 14 < (Main.top + 30) - i && temp.x - 14 < (Main.left - 20) + i) {
+                return DeleteBall();
+            }
+            if(temp.y + 14 < (Main.top + 30) - i && temp.x + 14 > (Main.right + 20) - i) {
+                return DeleteBall();
+            }
         }
 
-        //if(temp.x > Main.right && (temp.y < Main.top + 20 )) {
-        //    velocity.x = -velocity.x;
-        //}
         /*if(temp.y < Main.top || temp.y > Main.bottom)
             velocity.y = -velocity.y;
         if(temp.x < Main.left || temp.x > Main.right)
