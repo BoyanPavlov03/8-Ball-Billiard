@@ -49,26 +49,6 @@ public class Ball {
         //Returns true if a ball has been potted and false if not
         Vector2D temp = position.plus(velocity);
 
-        if(temp.y < Main.top && temp.x > (Main.left + 10) && temp.x < 420){
-            velocity.y = -velocity.y;
-        }
-        if(temp.y < Main.top && temp.x < (Main.right - 10) && temp.x > 465){
-            velocity.y = -velocity.y;
-        }
-        if(temp.y > Main.bottom && temp.x > (Main.left + 10) && temp.x < 420){
-            velocity.y = -velocity.y;
-        }
-        if(temp.y > Main.bottom && temp.x < (Main.right - 10) && temp.x > 465){
-            velocity.y = -velocity.y;
-        }
-        if(temp.x < Main.left && temp.y > (Main.top + 10) && temp.y < (Main.bottom - 10)) {
-            velocity.x = -velocity.x;
-        }
-        if(temp.x > Main.right && temp.y > (Main.top + 10) && temp.y < (Main.bottom - 10)) {
-            velocity.x = -velocity.x;
-        }
-
-
         if(temp.y < Main.top && temp.x + 14 > 420 && temp.x + 14 < 465){
             return DeleteBall();
         }
@@ -90,11 +70,29 @@ public class Ball {
             }
         }
 
-        /*if(temp.y < Main.top || temp.y > Main.bottom)
+        if(temp.y < Main.top || temp.y > Main.bottom)
             velocity.y = -velocity.y;
         if(temp.x < Main.left || temp.x > Main.right)
-            velocity.x = -velocity.x;*/
+            velocity.x = -velocity.x;
 
+        /*if(temp.y < Main.top && temp.x > (Main.left + 10) && temp.x < 420){
+            velocity.y = -velocity.y;
+        }
+        if(temp.y < Main.top && temp.x < (Main.right - 10) && temp.x > 465){
+            velocity.y = -velocity.y;
+        }
+        if(temp.y > Main.bottom && temp.x > (Main.left + 10) && temp.x < 420){
+            velocity.y = -velocity.y;
+        }
+        if(temp.y > Main.bottom && temp.x < (Main.right - 10) && temp.x > 465){
+            velocity.y = -velocity.y;
+        }
+        if(temp.x < Main.left && temp.y > (Main.top + 10) && temp.y < (Main.bottom - 10)) {
+            velocity.x = -velocity.x;
+        }
+        if(temp.x > Main.right && temp.y > (Main.top + 10) && temp.y < (Main.bottom - 10)) {
+            velocity.x = -velocity.x;
+        }*/
 
 
         position.add(velocity);

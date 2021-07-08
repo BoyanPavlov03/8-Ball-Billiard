@@ -9,7 +9,6 @@ import java.util.LinkedList;
 public class BallHandler {
     private LinkedList<Ball> balls;
     private HashMap<Ball,Vector2D> velocities = new HashMap<>();
-    private LinkedList<Boolean> ballsOnBoard = new LinkedList<>();
 
     public BallHandler() throws Exception {
         balls = new LinkedList<>();
