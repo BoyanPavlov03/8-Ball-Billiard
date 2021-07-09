@@ -11,7 +11,6 @@ public class Ball {
     Image image;
     int number;
     int radius;
-    Rectangle2D.Double hitbox;
 
     public Image getImage() {
         return image;
@@ -28,11 +27,16 @@ public class Ball {
         this.number = number;
         this.radius = 15;
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
-        //this.hitbox = new Rectangle2D.Double(position.x, position.y, 2 * radius, 2 * radius);
         this.ballHandler = ballHandler;
     }
-    public boolean hit(Ball b){
+
+    /*public boolean hit(Ball b){
         return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
+    }*/
+
+    public Rectangle2D.Double getBounds()
+    {
+        return new Rectangle2D.Double(position.x, position.y, 2 * radius - 2, 2 * radius - 2);
     }
 
     public boolean DeleteBall(){
@@ -129,8 +133,6 @@ public class Ball {
         if(Double.isNaN(s))
             s = 0;
         velocity.multiply(s);
-        //hitbox.x += velocity.x;
-        //hitbox.y += velocity.y;
         return false;
     }
 

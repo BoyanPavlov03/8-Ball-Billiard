@@ -52,7 +52,7 @@ public class BallHandler {
     public void tick(){
         for(Ball ball : balls){
             for(Ball b : balls) {
-                if (b.number > ball.number && ball.hit(b)) {
+                if (b.number > ball.number && ball.getBounds().intersects(b.getBounds())) {
                     updateV(ball, b, velocities.get(ball), velocities.get(b));
                 }
             }
