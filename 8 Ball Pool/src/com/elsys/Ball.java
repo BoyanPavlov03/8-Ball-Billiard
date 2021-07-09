@@ -30,14 +30,14 @@ public class Ball {
         this.ballHandler = ballHandler;
     }
 
-    /*public boolean hit(Ball b){
+    public boolean hit(Ball b){
         return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
-    }*/
+    }
 
-    public Rectangle2D.Double getBounds()
+    /*public Rectangle2D.Double getBounds()
     {
         return new Rectangle2D.Double(position.x, position.y, 2 * radius - 2, 2 * radius - 2);
-    }
+    }*/
 
     public boolean DeleteBall(){
         velocity.x = 0;
@@ -62,9 +62,22 @@ public class Ball {
                 }
             }
         }
+        else
+        {
+            if(isBlackValid(Main.players[Main.playerTurn].getBallType())){
+                Main.winState = 1;
+            }else{
+                Main.winState = -1;
+            }
+            return false;
+        }
         System.out.println(this.type);
         ballHandler.removeBall(this);
         return true;
+    }
+
+    public boolean isBlackValid(String type){
+        return ballHandler.getBalls().stream().filter(val -> val.getType().equals(type)).count() == 0;
     }
 
 
