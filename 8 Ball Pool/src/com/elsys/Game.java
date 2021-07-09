@@ -14,7 +14,7 @@ public class Game extends Canvas implements Runnable{
 
 
     Game() throws Exception {
-        new Window("Game", 914, 546, this);
+        new Window("Game", 914, 646, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
         this.ballHandler = new BallHandler();
         this.addMouseListener(new MouseInput(ballHandler));
@@ -83,11 +83,11 @@ public class Game extends Canvas implements Runnable{
         ////////////////////////////////
 
         g.setColor(Color.white);
-        g.fillRect(0 ,0, 900, 509);
+        g.fillRect(0 ,0, 900, 646);
         g.drawImage(board, 0, 0, null, null);
         ballHandler.render(g);
-        g.drawString(Main.players[Main.playerTurn].name, 70, 20);
-        g.drawString(Main.players[Main.playerTurn].getBallType(), 150,20);
+        Main.players[0].render(g,ballHandler, Main.left, 550, 0);
+        Main.players[1].render(g,ballHandler, Main.right, 550, 1);
 
         ////////////////////////////////
         g.dispose();

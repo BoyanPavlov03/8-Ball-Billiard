@@ -13,6 +13,14 @@ public class Ball {
     int radius;
     Rectangle2D.Double hitbox;
 
+    public Image getImage() {
+        return image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     public Ball(Vector2D position, Vector2D velocity, String type, Image image, int number, BallHandler ballHandler) {
         this.position = position;
         this.velocity = velocity;
@@ -40,13 +48,13 @@ public class Ball {
             if(Main.players[Main.playerTurn].getBallType().equals("None"))
             {
                 Main.players[Main.playerTurn].setBallType(this.type);
-                if(this.type.equals("big"))
+                if(this.type.equals("stripe"))
                 {
-                    Main.players[1 - Main.playerTurn].setBallType("small");
+                    Main.players[1 - Main.playerTurn].setBallType("solid");
                 }
                 else
                 {
-                    Main.players[1 - Main.playerTurn].setBallType("big");
+                    Main.players[1 - Main.playerTurn].setBallType("stripe");
                 }
             }
         }
