@@ -87,6 +87,7 @@ public class Game extends Canvas implements Runnable{
         g.drawImage(board, 0, 0, null, null);
         ballHandler.render(g);
         g.drawString(Main.players[Main.playerTurn].name, 70, 20);
+        g.drawString(Main.players[Main.playerTurn].getBallType(), 150,20);
 
         ////////////////////////////////
         g.dispose();

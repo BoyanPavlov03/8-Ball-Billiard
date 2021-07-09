@@ -9,6 +9,7 @@ public class Main {
     static double gravity = 9.8;
     static double ticks = 300;
     static int playerTurn = 0;
+    static boolean shouldSwap = false;
     static Player[] players = new Player[2];
 
     public static void swapTurns()

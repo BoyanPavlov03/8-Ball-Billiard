@@ -65,6 +65,12 @@ public class BallHandler {
             }
             velocities.replace(balls.get(i), new Vector2D(balls.get(i).velocity));
         }
+
+        if(checkForMovement() && Main.shouldSwap)
+        {
+            Main.swapTurns();
+            Main.shouldSwap = false;
+        }
     }
 
     public void render(Graphics g){

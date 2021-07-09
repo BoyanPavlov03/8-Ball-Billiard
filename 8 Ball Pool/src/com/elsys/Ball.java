@@ -20,7 +20,7 @@ public class Ball {
         this.number = number;
         this.radius = 15;
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
-        this.hitbox = new Rectangle2D.Double(position.x, position.y, 2 * radius, 2 * radius);
+        //this.hitbox = new Rectangle2D.Double(position.x, position.y, 2 * radius, 2 * radius);
         this.ballHandler = ballHandler;
     }
     public boolean hit(Ball b){
@@ -34,6 +34,23 @@ public class Ball {
             setPosition(new Vector2D(720, 240));
             return false;
         }
+        if(!this.type.equals("blackBall"))
+        {
+            Main.shouldSwap = false;
+            if(Main.players[Main.playerTurn].getBallType().equals("None"))
+            {
+                Main.players[Main.playerTurn].setBallType(this.type);
+                if(this.type.equals("big"))
+                {
+                    Main.players[1 - Main.playerTurn].setBallType("small");
+                }
+                else
+                {
+                    Main.players[1 - Main.playerTurn].setBallType("big");
+                }
+            }
+        }
+        System.out.println(this.type);
         ballHandler.removeBall(this);
         return true;
     }
@@ -104,8 +121,8 @@ public class Ball {
         if(Double.isNaN(s))
             s = 0;
         velocity.multiply(s);
-        hitbox.x += velocity.x;
-        hitbox.y += velocity.y;
+        //hitbox.x += velocity.x;
+        //hitbox.y += velocity.y;
         return false;
     }
 
