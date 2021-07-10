@@ -58,6 +58,12 @@ public class Ball {
                 }
             }
         }
+        else {
+            if (this.type.equals("blackBall")) {
+                setPosition(new Vector2D(210.2, 240.2));
+                return false;
+            }
+        }
         System.out.println(this.type);
         ballHandler.removeBall(this);
         return true;
