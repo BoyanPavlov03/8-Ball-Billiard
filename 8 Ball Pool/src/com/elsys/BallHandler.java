@@ -96,8 +96,8 @@ public class BallHandler {
         balls.add(new Ball(new Vector2D(180.4, 255.4), new Vector2D(0, 0),"solid", ImageIO.read(new File("./resources/ball 3.png")), 3, this));
         balls.add(new Ball(new Vector2D(180.6, 285.6), new Vector2D(0, 0),"stripe", ImageIO.read(new File("./resources/ball 14.png")), 14, this));
         balls.add(new Ball(new Vector2D(210, 210), new Vector2D(0, 0),"stripe", ImageIO.read(new File("./resources/ball 15.png")), 15, this));
-        //balls.add(new Ball(new Vector2D(210.2, 240.2), new Vector2D(0,0),"blackBall", ImageIO.read(new File("./resources/ball 8.png")), 8, this));
-        balls.add(new Ball(new Vector2D(430.2, 100.2), new Vector2D(0,0),"blackBall", ImageIO.read(new File("./resources/ball 8.png")), 8, this));
+        balls.add(new Ball(new Vector2D(210.2, 240.2), new Vector2D(0,0),"blackBall", ImageIO.read(new File("./resources/ball 8.png")), 8, this));
+        //balls.add(new Ball(new Vector2D(430.2, 100.2), new Vector2D(0,0),"blackBall", ImageIO.read(new File("./resources/ball 8.png")), 8, this));
         balls.add(new Ball(new Vector2D(210.4, 270.4), new Vector2D(0,0),"solid", ImageIO.read(new File("./resources/ball 1.png")), 1, this));
         balls.add(new Ball(new Vector2D(240, 225), new Vector2D(0, 0),"solid", ImageIO.read(new File("./resources/ball 7.png")), 7, this));
         balls.add(new Ball(new Vector2D(240.2, 255.2), new Vector2D(0, 0),"stripe", ImageIO.read(new File("./resources/ball 12.png")), 12, this));

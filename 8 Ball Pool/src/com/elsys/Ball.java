@@ -46,30 +46,32 @@ public class Ball {
             setPosition(new Vector2D(720, 240));
             return false;
         }
-        if(!this.type.equals("blackBall"))
-        {
-            Main.shouldSwap = false;
-            if(Main.players[Main.playerTurn].getBallType().equals("None"))
+        Main.shouldSwap = false;
+        if (Main.TurnCounter != 1) {
+            if(!this.type.equals("blackBall"))
             {
-                Main.players[Main.playerTurn].setBallType(this.type);
-                if(this.type.equals("stripe"))
+                if(Main.players[Main.playerTurn].getBallType().equals("None"))
                 {
-                    Main.players[1 - Main.playerTurn].setBallType("solid");
-                }
-                else
-                {
-                    Main.players[1 - Main.playerTurn].setBallType("stripe");
+                    Main.players[Main.playerTurn].setBallType(this.type);
+                    if(this.type.equals("stripe"))
+                    {
+                        Main.players[1 - Main.playerTurn].setBallType("solid");
+                    }
+                    else
+                    {
+                        Main.players[1 - Main.playerTurn].setBallType("stripe");
+                    }
                 }
             }
-        }
-        else
-        {
-            if(isBlackValid(Main.players[Main.playerTurn].getBallType())){
-                Main.winState = 1;
-            }else{
-                Main.winState = -1;
+            else
+            {
+                if(isBlackValid(Main.players[Main.playerTurn].getBallType())){
+                    Main.winState = 1;
+                }else{
+                    Main.winState = -1;
+                }
+                return false;
             }
-            return false;
         }
         System.out.println(this.type);
         ballHandler.removeBall(this);
