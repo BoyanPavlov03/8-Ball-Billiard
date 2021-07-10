@@ -11,7 +11,6 @@ public class Ball {
     Image image;
     int number;
     int radius;
-    Rectangle2D.Double hitbox;
 
     public Image getImage() {
         return image;
@@ -28,12 +27,17 @@ public class Ball {
         this.number = number;
         this.radius = 15;
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
-        //this.hitbox = new Rectangle2D.Double(position.x, position.y, 2 * radius, 2 * radius);
         this.ballHandler = ballHandler;
     }
+
     public boolean hit(Ball b){
         return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
     }
+
+    /*public Rectangle2D.Double getBounds()
+    {
+        return new Rectangle2D.Double(position.x, position.y, 2 * radius - 2, 2 * radius - 2);
+    }*/
 
     public boolean DeleteBall(){
         velocity.x = 0;
@@ -42,20 +46,31 @@ public class Ball {
             setPosition(new Vector2D(720, 240));
             return false;
         }
-        if(!this.type.equals("blackBall"))
-        {
-            Main.shouldSwap = false;
-            if(Main.players[Main.playerTurn].getBallType().equals("None"))
+        Main.shouldSwap = false;
+        if (Main.TurnCounter != 1) {
+            if(!this.type.equals("blackBall"))
             {
-                Main.players[Main.playerTurn].setBallType(this.type);
-                if(this.type.equals("stripe"))
+                if(Main.players[Main.playerTurn].getBallType().equals("None"))
                 {
-                    Main.players[1 - Main.playerTurn].setBallType("solid");
+                    Main.players[Main.playerTurn].setBallType(this.type);
+                    if(this.type.equals("stripe"))
+                    {
+                        Main.players[1 - Main.playerTurn].setBallType("solid");
+                    }
+                    else
+                    {
+                        Main.players[1 - Main.playerTurn].setBallType("stripe");
+                    }
                 }
-                else
-                {
-                    Main.players[1 - Main.playerTurn].setBallType("stripe");
+            }
+            else
+            {
+                if(isBlackValid(Main.players[Main.playerTurn].getBallType())){
+                    Main.winState = 1;
+                }else{
+                    Main.winState = -1;
                 }
+                return false;
             }
         }
         else {
@@ -67,6 +82,10 @@ public class Ball {
         System.out.println(this.type);
         ballHandler.removeBall(this);
         return true;
+    }
+
+    public boolean isBlackValid(String type){
+        return ballHandler.getBalls().stream().filter(val -> val.getType().equals(type)).count() == 0;
     }
 
 
@@ -135,8 +154,6 @@ public class Ball {
         if(Double.isNaN(s))
             s = 0;
         velocity.multiply(s);
-        //hitbox.x += velocity.x;
-        //hitbox.y += velocity.y;
         return false;
     }
 

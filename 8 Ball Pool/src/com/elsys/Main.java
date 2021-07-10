@@ -11,6 +11,8 @@ public class Main {
     static int playerTurn = 0;
     static boolean shouldSwap = false;
     static Player[] players = new Player[2];
+    static int winState = 0;
+    static int TurnCounter = 0;
 
     public static void swapTurns()
     {

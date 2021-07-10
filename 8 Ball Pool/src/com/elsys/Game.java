@@ -11,6 +11,7 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
     private Image board;
     private BallHandler ballHandler;
+    private Font UIFont;
 
 
     Game() throws Exception {
@@ -19,6 +20,7 @@ public class Game extends Canvas implements Runnable{
         this.ballHandler = new BallHandler();
         this.addMouseListener(new MouseInput(ballHandler));
         this.addKeyListener(new KeyInput(ballHandler.getWhiteBall()));
+        this.UIFont = new Font("TimesRoman", Font.BOLD, 15);
         start();
     }
 
@@ -82,13 +84,27 @@ public class Game extends Canvas implements Runnable{
         Graphics g = bs.getDrawGraphics();
         ////////////////////////////////
 
-        g.setColor(Color.white);
-        g.fillRect(0 ,0, 900, 646);
-        g.drawImage(board, 0, 0, null, null);
-        ballHandler.render(g);
-        Main.players[0].render(g,ballHandler, Main.left, 550, 0);
-        Main.players[1].render(g,ballHandler, Main.right, 550, 1);
-
+        if(Main.winState != 0){
+            g.setColor(Color.black);
+            g.fillRect(0,0, 900, 646);
+            g.setColor(Color.green);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 60));
+            if(Main.winState == -1){
+                Main.swapTurns();
+                Main.winState = 1;
+            }
+            String str = Main.players[Main.playerTurn].name + " has won the game!";
+            g.drawString(str, 65, 323);
+        }else {
+            g.setColor(Color.white);
+            g.fillRect(0, 0, 900, 646);
+            g.drawImage(board, 0, 0, null, null);
+            ballHandler.render(g);
+            g.setFont(UIFont);
+            Main.players[0].render(g, ballHandler, Main.left - 30, 550, 0);
+            Main.players[1].render(g, ballHandler, Main.right, 550, 1);
+            g.drawString(Main.players[Main.playerTurn].name, (Main.right + Main.left - 35) / 2, 525);
+        }
         ////////////////////////////////
         g.dispose();
         bs.show();
