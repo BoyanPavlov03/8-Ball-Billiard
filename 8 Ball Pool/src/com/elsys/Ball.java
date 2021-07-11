@@ -30,8 +30,21 @@ public class Ball {
         this.ballHandler = ballHandler;
     }
 
-    public boolean hit(Ball b){
+    /*public boolean hit(Ball b){
         return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
+    }*/
+
+    public boolean collide(Ball b)
+    {
+        double xd = position.x - b.position.x;
+        double yd = position.y - b.position.y;
+
+        double sumRadius = radius + b.radius;
+        double sqrRadius = sumRadius * sumRadius;
+
+        double distSqr = (xd * xd) + (yd * yd);
+
+        return distSqr <= sqrRadius;
     }
 
     /*public Rectangle2D.Double getBounds()

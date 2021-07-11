@@ -11,8 +11,15 @@ public class Vector2D {
     }
 
     public Vector2D add(Vector2D a){
-        x += a.x;
-        y += a.y;
+        this.x += a.x;
+        this.y += a.y;
+        return this;
+    }
+
+    public Vector2D subtract(Vector2D a)
+    {
+        this.x -= a.x;
+        this.y -= a.y;
         return this;
     }
 
@@ -32,7 +39,20 @@ public class Vector2D {
     }
 
     public Vector2D normalize() {
-        return this.multiply(1 / this.length());
+        double length = this.length();
+
+        if(length != 0.0d)
+        {
+            this.x = x / length;
+            this.y = y / length;
+        }
+        else
+        {
+            this.x = 0.0d;
+            this.y = 0.0d;
+        }
+
+        return this;
     }
 
     @Override
@@ -49,6 +69,10 @@ public class Vector2D {
 
     public Vector2D plus(Vector2D a){
         return new Vector2D(x + a.x, y + a.y);
+    }
+    public Vector2D minus(Vector2D a)
+    {
+        return new Vector2D(x - a.x, y - a.y);
     }
     public Vector2D times(double a){
         return new Vector2D(x * a, y * a);
