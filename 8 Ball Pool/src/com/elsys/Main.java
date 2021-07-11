@@ -13,6 +13,8 @@ public class Main {
     static Player[] players = new Player[2];
     static int winState = 0;
     static int TurnCounter = 0;
+    static boolean firstBallHit = true;
+    static String firstHit = "None";
 
     public static void swapTurns()
     {

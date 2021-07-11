@@ -13,7 +13,6 @@ public class Game extends Canvas implements Runnable{
     private BallHandler ballHandler;
     private Font UIFont;
 
-
     Game() throws Exception {
         new Window("Game", 914, 646, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
@@ -70,7 +69,9 @@ public class Game extends Canvas implements Runnable{
     }
 
     public void tick(){
-        ballHandler.tick();
+        if (Main.winState == 0) {
+            ballHandler.tick();
+        }
     }
 
     public void render() {
@@ -90,7 +91,6 @@ public class Game extends Canvas implements Runnable{
             g.setColor(Color.green);
             g.setFont(new Font("TimesRoman", Font.BOLD, 60));
             if(Main.winState == -1){
-                Main.swapTurns();
                 Main.winState = 1;
             }
             String str = Main.players[Main.playerTurn].name + " has won the game!";
@@ -102,7 +102,7 @@ public class Game extends Canvas implements Runnable{
             ballHandler.render(g);
             g.setFont(UIFont);
             Main.players[0].render(g, ballHandler, Main.left - 30, 550, 0);
-            Main.players[1].render(g, ballHandler, Main.right, 550, 1);
+            Main.players[1].render(g, ballHandler, Main.right + 30, 550, 1);
             g.drawString(Main.players[Main.playerTurn].name, (Main.right + Main.left - 35) / 2, 525);
         }
         ////////////////////////////////

@@ -15,8 +15,10 @@ public class MouseInput extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if (handler.checkForMovement()) {
             handler.getWhiteBall().setVelocity(new Vector2D(e.getX() - (handler.getWhiteBall().position.x + 14), e.getY() - (handler.getWhiteBall().position.y + 14)).normalize().multiply(3));
-            Main.shouldSwap = true;
             Main.TurnCounter ++;
+            Main.firstBallHit = true;
+            Main.shouldSwap = true;
+            Main.firstHit = "None";
         }
     }
 

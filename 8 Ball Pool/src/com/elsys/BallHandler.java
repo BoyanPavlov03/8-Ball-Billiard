@@ -94,16 +94,19 @@ public class BallHandler {
         for(int i = 0; i < balls.size(); i++){
             for(int j = i + 1; j < balls.size(); j++) {
                 if (balls.get(i).collide(balls.get(j))) {
+                    if(Main.firstBallHit && balls.get(i) instanceof WhiteBall){
+                        Main.firstHit = balls.get(j).type;
+                        if(!balls.get(j).type.equals(Main.players[Main.playerTurn].getBallType()) && !Main.players[Main.playerTurn].getBallType().equals("None")) {
+                            Main.shouldSwap = true;
+                        }
+                        Main.firstBallHit = false;
+                    }
                     collideBalls(balls.get(i), balls.get(j));
                 }
             }
         }
         for(int i = 0; i < getTotalBalls(); i++){
-            if(balls.get(i).tick())
-            {
-                i--;
-                continue;
-            }
+            if(balls.get(i).tick()) i--;
         }
 
         if(checkForMovement() && Main.shouldSwap)

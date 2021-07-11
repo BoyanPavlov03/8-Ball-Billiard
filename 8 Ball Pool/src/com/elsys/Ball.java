@@ -59,7 +59,11 @@ public class Ball {
             setPosition(new Vector2D(720, 240));
             return false;
         }
-        Main.shouldSwap = false;
+
+        if (Main.firstHit.equals(Main.players[Main.playerTurn].getBallType())){
+            Main.shouldSwap = false;
+        }
+
         if (Main.TurnCounter != 1) {
             if(!this.type.equals("blackBall"))
             {
@@ -75,6 +79,9 @@ public class Ball {
                         Main.players[1 - Main.playerTurn].setBallType("stripe");
                     }
                 }
+                else if(!Main.players[Main.playerTurn].getBallType().equals(this.type)) {
+                    Main.shouldSwap = true;
+                }
             }
             else
             {
@@ -82,6 +89,7 @@ public class Ball {
                     Main.winState = 1;
                 }else{
                     Main.winState = -1;
+                    Main.swapTurns();
                 }
                 return false;
             }
@@ -98,6 +106,9 @@ public class Ball {
     }
 
     public boolean isBlackValid(String type){
+        if(Main.players[Main.playerTurn].getBallType().equals("None")) {
+            return false;
+        }
         return ballHandler.getBalls().stream().filter(val -> val.getType().equals(type)).count() == 0;
     }
 
