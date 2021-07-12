@@ -23,6 +23,16 @@ public class MouseInput extends MouseAdapter {
     }
 
     @Override
+    public void mouseMoved(MouseEvent e) {
+        super.mouseMoved(e);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        super.mouseDragged(e);
+    }
+
+    @Override
     public void mousePressed(MouseEvent e) {
 
     }
