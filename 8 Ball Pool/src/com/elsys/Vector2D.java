@@ -38,6 +38,10 @@ public class Vector2D {
         return this;
     }
 
+    public double distance(Vector2D a){
+        return Math.sqrt(Math.abs(this.x - a.x) * Math.abs(this.x - a.x) + Math.abs(this.y - a.y) * Math.abs(this.y - a.y));
+    }
+
     public Vector2D normalize() {
         double length = this.length();
 

@@ -13,13 +13,23 @@ public class Cue {
 
     public Cue(Vector2D position, Image image){
         this.position = position;
-        this.radius = 100;
+        this.radius = 150;
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
     }
 
-    void tick(WhiteBall whiteBall, Vector2D mouseCords){
-        position.x = whiteBall.position.x;
-        position.y = whiteBall.position.y;
+    void tick(WhiteBall whiteBall, Vector2D mousePos){
+        Vector2D whiteBallPos = new Vector2D(whiteBall.position.x + 14, whiteBall.position.y + 14);
+        double dist = whiteBallPos.distance(mousePos);
+        double distx = Math.abs(whiteBallPos.x - mousePos.x);
+        double disty = Math.abs(whiteBallPos.y - mousePos.y);
+        double whatper = (15 / dist) * 100;
+        double addx = (distx * whatper) / 100;
+        double addy = (disty * whatper) / 100;
+
+
+
+        position.x = whiteBallPos.x + addx;
+        position.y = whiteBallPos.y + addy;
     }
 
     void render(Graphics g) {

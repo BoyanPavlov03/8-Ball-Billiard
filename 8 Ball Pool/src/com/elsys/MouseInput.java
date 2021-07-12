@@ -26,12 +26,12 @@ public class MouseInput extends MouseAdapter {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        System.out.println("mouseMoved!!!");
+        cueHandler.setMouseCords(new Vector2D(e.getX(), e.getY()));
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("mouseDragged!!!");
+        cueHandler.setMouseCords(new Vector2D(e.getX(), e.getY()));
     }
 
     @Override
