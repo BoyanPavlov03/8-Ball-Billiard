@@ -49,7 +49,7 @@ public class Cue {
         }
 
         // Create a buffered image with transparency
-        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage bimage = new BufferedImage(img.getWidth(null) + 200, img.getHeight(null) + 200, BufferedImage.TYPE_INT_ARGB);
 
         // Draw the image on to the buffered image
         Graphics2D bGr = bimage.createGraphics();
@@ -78,11 +78,24 @@ public class Cue {
         Graphics2D g2d = (Graphics2D) g.create();
         BufferedImage bufferedImage = toBufferedImage(image);
 
-        double rotationRequired = Math.toRadians (110);
+        AffineTransform backup = g2d.getTransform();
+        //rx is the x coordinate for rotation, ry is the y coordinate for rotation, and angle
+        //is the angle to rotate the image. If you want to rotate around the center of an image,
+        //use the image's center x and y coordinates for rx and ry.
+        AffineTransform a = AffineTransform.getRotateInstance(Math.toRadians(0), position.x, position.y);
+        //Set our Graphics2D object to the transform
+        g2d.setTransform(a);
+        //Draw our image like normal
+        g2d.drawImage(image, (int) position.x, (int) position.y, null);
+        //Reset our graphics object so we can draw with it again.
+        g2d.setTransform(backup);
+
+        /*double rotationRequired = Math.toRadians(0);
         double locationX = bufferedImage.getWidth() / 2.0;
         double locationY = bufferedImage.getHeight() / 2.0;
         AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        g2d.drawImage(op.filter(bufferedImage, null), (int)position.x, (int)position.y, null);
+        g2d.drawImage(op.filter(bufferedImage, null), (int)position.x, (int)position.y, null);*/
+
     }
 }
