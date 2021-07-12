@@ -11,12 +11,14 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
     private Image board;
     private BallHandler ballHandler;
+    private CueHandler cueHandler;
     private Font UIFont;
 
     Game() throws Exception {
         new Window("Game", 914, 646, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
         this.ballHandler = new BallHandler();
+        this.cueHandler = new CueHandler(ballHandler);
         this.addMouseListener(new MouseInput(ballHandler));
         this.addKeyListener(new KeyInput(ballHandler.getWhiteBall()));
         this.UIFont = new Font("TimesRoman", Font.BOLD, 15);
@@ -71,6 +73,7 @@ public class Game extends Canvas implements Runnable{
     public void tick(){
         if (Main.winState == 0) {
             ballHandler.tick();
+            cueHandler.tick();
         }
     }
 
@@ -100,6 +103,7 @@ public class Game extends Canvas implements Runnable{
             g.fillRect(0, 0, 900, 646);
             g.drawImage(board, 0, 0, null, null);
             ballHandler.render(g);
+            cueHandler.render(g);
             g.setFont(UIFont);
             Main.players[0].render(g, ballHandler, Main.left - 30, 550, 0);
             Main.players[1].render(g, ballHandler, Main.right + 30, 550, 1);
