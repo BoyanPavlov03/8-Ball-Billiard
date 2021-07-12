@@ -1,35 +1,37 @@
 package com.elsys;
 
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MouseInput extends MouseAdapter {
-    BallHandler handler;
+    BallHandler ballHandler;
+    CueHandler cueHandler;
 
-    public MouseInput(BallHandler h) {
-        this.handler = h;
+    public MouseInput(BallHandler ballHandler, CueHandler cueHandler) {
+        this.ballHandler = ballHandler;
+        this.cueHandler = cueHandler;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (handler.checkForMovement()) {
-            handler.getWhiteBall().setVelocity(new Vector2D(e.getX() - (handler.getWhiteBall().position.x + 14), e.getY() - (handler.getWhiteBall().position.y + 14)).normalize().multiply(3));
+        if (ballHandler.checkForMovement()) {
+            ballHandler.getWhiteBall().setVelocity(new Vector2D(e.getX() - (ballHandler.getWhiteBall().position.x + 14), e.getY() - (ballHandler.getWhiteBall().position.y + 14)).normalize().multiply(3));
             Main.TurnCounter ++;
             Main.firstBallHit = true;
             Main.shouldSwap = true;
             Main.firstHit = "None";
         }
+        System.out.println("clicked mouse");
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        super.mouseMoved(e);
+        System.out.println("mouseMoved!!!");
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        super.mouseDragged(e);
+        System.out.println("mouseDragged!!!");
     }
 
     @Override

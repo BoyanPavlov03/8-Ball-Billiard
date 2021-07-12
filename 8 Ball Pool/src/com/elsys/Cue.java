@@ -17,7 +17,7 @@ public class Cue {
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
     }
 
-    void tick(WhiteBall whiteBall){
+    void tick(WhiteBall whiteBall, Vector2D mouseCords){
         position.x = whiteBall.position.x;
         position.y = whiteBall.position.y;
     }

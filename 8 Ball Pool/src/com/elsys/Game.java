@@ -19,7 +19,8 @@ public class Game extends Canvas implements Runnable{
         this.board = ImageIO.read(new File("./resources/board.png"));
         this.ballHandler = new BallHandler();
         this.cueHandler = new CueHandler(ballHandler);
-        this.addMouseListener(new MouseInput(ballHandler));
+        this.addMouseListener(new MouseInput(ballHandler, cueHandler));
+        this.addMouseMotionListener(new MouseInput(ballHandler, cueHandler));
         this.addKeyListener(new KeyInput(ballHandler.getWhiteBall()));
         this.UIFont = new Font("TimesRoman", Font.BOLD, 15);
         start();
