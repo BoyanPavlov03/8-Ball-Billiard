@@ -57,6 +57,7 @@ public class Ball {
         velocity.y = 0;
         if(this instanceof WhiteBall){
             setPosition(new Vector2D(720, 240));
+            Main.shouldSwap = true;
             return false;
         }
 
@@ -78,6 +79,7 @@ public class Ball {
                     {
                         Main.players[1 - Main.playerTurn].setBallType("stripe");
                     }
+                    Main.shouldSwap = false;
                 }
                 else if(!Main.players[Main.playerTurn].getBallType().equals(this.type)) {
                     Main.shouldSwap = true;
