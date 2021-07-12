@@ -21,7 +21,6 @@ public class MouseInput extends MouseAdapter {
             Main.shouldSwap = true;
             Main.firstHit = "None";
         }
-        System.out.println("clicked mouse");
     }
 
     @Override
