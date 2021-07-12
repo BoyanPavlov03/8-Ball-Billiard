@@ -20,8 +20,8 @@ public class Cue {
     void tick(WhiteBall whiteBall, Vector2D mousePos){
         Vector2D whiteBallPos = new Vector2D(whiteBall.position.x + 14, whiteBall.position.y + 14);
         double dist = whiteBallPos.distance(mousePos);
-        double distx = Math.abs(whiteBallPos.x - mousePos.x);
-        double disty = Math.abs(whiteBallPos.y - mousePos.y);
+        double distx = whiteBallPos.x - mousePos.x;
+        double disty = whiteBallPos.y - mousePos.y;
         double whatper = (15 / dist) * 100;
         double addx = (distx * whatper) / 100;
         double addy = (disty * whatper) / 100;
