@@ -63,11 +63,11 @@ public class Cue {
             oldPos.y = position.y;
         }else{
             // mousePos - current, mouseCords - old
-            position.x = oldPos.x + 3;
-            position.y = oldPos.y + 3;
+            pull.x = mousePos.x - mouseCords.x;
+            pull.y = mousePos.y - mouseCords.y;
+            position.x = oldPos.x + pull.x;
+            position.y = oldPos.y + pull.y;
         }
-
-
     }
 
     void render(Graphics g, boolean shooting) {
