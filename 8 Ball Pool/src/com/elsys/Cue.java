@@ -2,6 +2,7 @@ package com.elsys;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.util.Vector;
 
 public class Cue {
     Vector2D position;
@@ -17,9 +18,13 @@ public class Cue {
     double whatper;
     double addx;
     double addy;
+    double maxpull;
+    Vector2D pull;
+    Vector2D oldPos;
 
     public Cue(Vector2D position, Image image){
         this.position = position;
+        this.oldPos = new Vector2D(position.x, position.y);
         this.radius = 150;
         this.image = image.getScaledInstance(2 * radius, 2 * radius, 0);
         mouseCords = new Vector2D(720, 240);
@@ -33,6 +38,8 @@ public class Cue {
         this.whatper = (15 / this.dist) * 100;
         this.addx = (this.distx * this.whatper) / 100;
         this.addy = (this.disty * this.whatper) / 100;
+        this.maxpull = 50;
+        this.pull = new Vector2D(0, 0);
     }
 
     public Image getImage() {
@@ -52,7 +59,15 @@ public class Cue {
 
             position.x = whiteBallPos.x + addx;
             position.y = whiteBallPos.y + addy;
+            oldPos.x = position.x;
+            oldPos.y = position.y;
+        }else{
+            // mousePos - current, mouseCords - old
+            position.x = oldPos.x + 3;
+            position.y = oldPos.y + 3;
         }
+
+
     }
 
     void render(Graphics g, boolean shooting) {
