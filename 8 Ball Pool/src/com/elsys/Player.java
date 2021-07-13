@@ -13,17 +13,24 @@ public class Player {
     }
 
     public void render(Graphics g, BallHandler h, int x, int y, int player) {
-        g.setColor(Color.black);
         g.drawString(this.name, x,y);
 
-        int i = (player == 0) ? -20 : 20;
+        int stripeCounter = (int) h.getBalls().stream().filter(val -> val.getType().equals("stripe")).count();
+        int solidCounter = (int) h.getBalls().stream().filter(val -> val.getType().equals("solid")).count();
+
+        int i = (player == 0) ? -30 : 30;
+        x = (player == 0) ? x + 30 : x - 3;
         for(Ball ball : h.getBalls()) {
             if(ball.getType().equals(this.ballType)) {
-                g.drawImage(ball.getImage(), x + i, y + 20, null);
+                g.drawImage(ball.getImage(), x + i, y + 11, null);
                 if (player == 0) {
-                    i += 30;
+                    i += 36;
                 }else{
-                    i -= 30;
+                    i -= 36;
+                }
+            } else if(ball.getType().equals("blackBall")) {
+                if(this.ballType.equals("stripe") && stripeCounter == 0 || this.ballType.equals("solid") && solidCounter == 0) {
+                    g.drawImage(ball.getImage(), x + i, y + 11, null);
                 }
             }
         }

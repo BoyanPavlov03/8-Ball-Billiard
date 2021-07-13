@@ -90,8 +90,10 @@ public class Ball {
                     Main.shouldSwap = false;
                 }
                 else if(!Main.players[Main.playerTurn].getBallType().equals(this.type)) {
+                    if(!Main.firstHit.equals(Main.players[Main.playerTurn].getBallType())) {
+                        Main.canMoveWhiteBall = true;
+                    }
                     Main.shouldSwap = true;
-                    Main.canMoveWhiteBall = true;
                 }
             }
             else

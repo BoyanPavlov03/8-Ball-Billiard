@@ -13,6 +13,7 @@ public class Game extends Canvas implements Runnable{
     private BallHandler ballHandler;
     private CueHandler cueHandler;
     private Font UIFont;
+    private Image imageUI;
 
     Game() throws Exception {
         new Window("Game", 914, 646, this);
@@ -23,6 +24,7 @@ public class Game extends Canvas implements Runnable{
         this.addMouseMotionListener(new MouseInput(ballHandler, cueHandler));
         this.addKeyListener(new KeyInput());
         this.UIFont = new Font("TimesRoman", Font.BOLD, 15);
+        this.imageUI = ImageIO.read(new File("./resources/UIFrame.png"));
         start();
     }
 
@@ -100,18 +102,20 @@ public class Game extends Canvas implements Runnable{
             String str = Main.players[Main.playerTurn].name + " has won the game!";
             g.drawString(str, 65, 323);
         }else {
-            g.setColor(Color.white);
+            g.setColor(new Color(24,34,52,255));
             g.fillRect(0, 0, 900, 646);
             g.drawImage(board, 0, 0, null, null);
             ballHandler.render(g);
             cueHandler.render(g);
             g.setFont(UIFont);
-            Main.players[0].render(g, ballHandler, Main.left - 30, 550, 0);
-            Main.players[1].render(g, ballHandler, Main.right + 30, 550, 1);
+            g.drawImage(imageUI, 0,Main.bottom + 88, null, null);
+            g.setColor(Color.white);
+            Main.players[0].render(g, ballHandler, Main.left - 30, 540, 0);
+            Main.players[1].render(g, ballHandler, Main.right, 540, 1);
             g.drawString(Main.players[Main.playerTurn].name, (Main.right + Main.left - 35) / 2, 525);
             if(Main.canMoveWhiteBall && ballHandler.checkForMovement()){
-                g.drawString("You can move the white ball", Main.left + 280, 540);
-                g.drawString("Press space when you are ready", Main.left + 270, 560);
+                g.drawString("You can move the white ball", Main.left + 280, 545);
+                g.drawString("Press space when you are ready", Main.left + 270, 565);
             }
         }
         ////////////////////////////////
