@@ -16,7 +16,7 @@ public class Game extends Canvas implements Runnable{
     private Image imageUI;
 
     Game() throws Exception {
-        new Window("Game", 914, 646, this);
+        new Window("Billiard", 914, 646, this);
         this.board = ImageIO.read(new File("./resources/board.png"));
         this.ballHandler = new BallHandler();
         this.cueHandler = new CueHandler(new Vector2D(720, 240), ballHandler);
