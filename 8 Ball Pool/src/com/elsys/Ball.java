@@ -58,11 +58,19 @@ public class Ball {
         if(this instanceof WhiteBall){
             setPosition(new Vector2D(720, 240));
             Main.shouldSwap = true;
+            Main.canMoveWhiteBall = true;
             return false;
         }
 
-        if (Main.firstHit.equals(Main.players[Main.playerTurn].getBallType())){
+        if(Main.players[Main.playerTurn].getBallType().equals("None")) {
+            //does nothing
+        }
+        else if (Main.firstHit.equals(Main.players[Main.playerTurn].getBallType())){
             Main.shouldSwap = false;
+        }
+        else{
+            Main.shouldSwap = true;
+            Main.canMoveWhiteBall = true;
         }
 
         if (Main.TurnCounter != 1) {
@@ -83,6 +91,7 @@ public class Ball {
                 }
                 else if(!Main.players[Main.playerTurn].getBallType().equals(this.type)) {
                     Main.shouldSwap = true;
+                    Main.canMoveWhiteBall = true;
                 }
             }
             else

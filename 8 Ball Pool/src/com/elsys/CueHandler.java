@@ -34,7 +34,7 @@ public class CueHandler {
     }
 
     public void render(Graphics g) {
-        if(ballHandler.checkForMovement()){
+        if(ballHandler.checkForMovement() && !Main.canMoveWhiteBall){
             cue.render(g, shooting);
         }
     }

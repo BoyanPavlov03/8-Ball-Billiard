@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable{
         this.cueHandler = new CueHandler(new Vector2D(720, 240), ballHandler);
         this.addMouseListener(new MouseInput(ballHandler, cueHandler));
         this.addMouseMotionListener(new MouseInput(ballHandler, cueHandler));
-        this.addKeyListener(new KeyInput(ballHandler.getWhiteBall()));
+        this.addKeyListener(new KeyInput());
         this.UIFont = new Font("TimesRoman", Font.BOLD, 15);
         start();
     }
@@ -109,6 +109,10 @@ public class Game extends Canvas implements Runnable{
             Main.players[0].render(g, ballHandler, Main.left - 30, 550, 0);
             Main.players[1].render(g, ballHandler, Main.right + 30, 550, 1);
             g.drawString(Main.players[Main.playerTurn].name, (Main.right + Main.left - 35) / 2, 525);
+            if(Main.canMoveWhiteBall && ballHandler.checkForMovement()){
+                g.drawString("You can move the white ball", Main.left + 280, 540);
+                g.drawString("Press space when you are ready", Main.left + 270, 560);
+            }
         }
         ////////////////////////////////
         g.dispose();

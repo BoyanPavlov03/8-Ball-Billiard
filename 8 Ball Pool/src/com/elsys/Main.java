@@ -15,7 +15,7 @@ public class Main {
     static int TurnCounter = 0;
     static boolean firstBallHit = true;
     static String firstHit = "None";
-    static boolean whiteBallPotted = false;
+    static boolean canMoveWhiteBall = true;
     static double innateRotation = 2.37;
 
     public static void swapTurns()
