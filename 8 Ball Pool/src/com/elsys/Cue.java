@@ -19,7 +19,6 @@ public class Cue {
     double addx;
     double addy;
     double maxpull;
-    Vector2D pull;
     Vector2D oldPos;
 
     public Cue(Vector2D position, Image image){
@@ -39,7 +38,6 @@ public class Cue {
         this.addx = (this.distx * this.whatper) / 100;
         this.addy = (this.disty * this.whatper) / 100;
         this.maxpull = 50;
-        this.pull = new Vector2D(0, 0);
     }
 
     public Image getImage() {
@@ -63,10 +61,23 @@ public class Cue {
             oldPos.y = position.y;
         }else{
             // mousePos - current, mouseCords - old
-            pull.x = mousePos.x - mouseCords.x;
-            pull.y = mousePos.y - mouseCords.y;
-            position.x = oldPos.x + pull.x;
-            position.y = oldPos.y + pull.y;
+            double bigdistance = oldPos.distance(mouseCords);
+            double smalldistance = mouseCords.distance(mousePos);
+            double middledistance = oldPos.distance(mousePos);
+            if(bigdistance >= middledistance){
+                double per = (smalldistance / bigdistance) * 100;
+                double diffx = ((oldPos.x - mouseCords.x) * per) / 100;
+                double diffy = ((oldPos.y - mouseCords.y) * per) / 100;
+                Vector2D newpos = new Vector2D(oldPos.x + diffx, oldPos.y + diffy);
+
+                if(oldPos.distance(newpos) <= maxpull){
+                    position.x = oldPos.x + diffx;
+                    position.y = oldPos.y + diffy;
+                }
+            }else{
+                position.x = oldPos.x;
+                position.y = oldPos.y;
+            }
         }
     }
 
