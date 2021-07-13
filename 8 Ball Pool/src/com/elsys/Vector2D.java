@@ -59,14 +59,6 @@ public class Vector2D {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Vector2D{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
-    }
-
     public double length(){
         return Math.sqrt(this.dot(this));
     }
@@ -81,6 +73,5 @@ public class Vector2D {
     public Vector2D times(double a){
         return new Vector2D(x * a, y * a);
     }
-    public Vector2D opposite(){return new Vector2D(-x, -y);}
 
 }

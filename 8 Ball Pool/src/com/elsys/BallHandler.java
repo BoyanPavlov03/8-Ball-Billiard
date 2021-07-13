@@ -33,21 +33,6 @@ public class BallHandler {
         return true;
     }
 
-    /*public void updateV(Ball a, Ball b, Vector2D v1, Vector2D v2){
-
-        Vector2D n = a.position.plus(b.position.opposite()).normalize();
-        Vector2D nt = new Vector2D(-n.y, n.x);
-        a.velocity = nt.times(v1.dot(nt)).add(n.times(v2.dot(n)));
-        b.velocity = nt.times(v2.dot(nt)).add(n.times(v1.dot(n)));
-
-
-        Vector2D X = a.position.plus(b.position.opposite());
-        Vector2D V = v1.plus(v2.opposite());
-        a.velocity.add(X.times(X.dot(V) / X.dot(X)).opposite());
-        b.velocity.add(X.times(X.dot(V) / X.dot(X)));
-
-    }*/
-
     public void collideBalls(Ball a, Ball b)
     {
         // every ball will have a mass of 1.0d

@@ -17,13 +17,6 @@ public class MouseInput extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        /*if (ballHandler.checkForMovement()) {
-            ballHandler.getWhiteBall().setVelocity(new Vector2D(e.getX() - (ballHandler.getWhiteBall().position.x + 14), e.getY() - (ballHandler.getWhiteBall().position.y + 14)).normalize().multiply(3));
-            Main.TurnCounter ++;
-            Main.firstBallHit = true;
-            Main.shouldSwap = true;
-            Main.firstHit = "None";
-        }*/
     }
 
     @Override

@@ -30,10 +30,6 @@ public class Ball {
         this.ballHandler = ballHandler;
     }
 
-    /*public boolean hit(Ball b){
-        return position.plus(velocity).add(b.position.opposite().plus(b.velocity)).dot(position.plus(velocity).add(b.position.opposite().add(b.velocity))) <= 960;
-    }*/
-
     public boolean collide(Ball b)
     {
         double xd = position.x - b.position.x;
@@ -47,10 +43,6 @@ public class Ball {
         return distSqr <= sqrRadius;
     }
 
-    /*public Rectangle2D.Double getBounds()
-    {
-        return new Rectangle2D.Double(position.x, position.y, 2 * radius - 2, 2 * radius - 2);
-    }*/
 
     public boolean DeleteBall(){
         velocity.x = 0;
@@ -161,26 +153,6 @@ public class Ball {
             velocity.y = -velocity.y;
         if(temp.x < Main.left || temp.x > Main.right)
             velocity.x = -velocity.x;
-
-        /*if(temp.y < Main.top && temp.x > (Main.left + 10) && temp.x < 420){
-            velocity.y = -velocity.y;
-        }
-        if(temp.y < Main.top && temp.x < (Main.right - 10) && temp.x > 465){
-            velocity.y = -velocity.y;
-        }
-        if(temp.y > Main.bottom && temp.x > (Main.left + 10) && temp.x < 420){
-            velocity.y = -velocity.y;
-        }
-        if(temp.y > Main.bottom && temp.x < (Main.right - 10) && temp.x > 465){
-            velocity.y = -velocity.y;
-        }
-        if(temp.x < Main.left && temp.y > (Main.top + 10) && temp.y < (Main.bottom - 10)) {
-            velocity.x = -velocity.x;
-        }
-        if(temp.x > Main.right && temp.y > (Main.top + 10) && temp.y < (Main.bottom - 10)) {
-            velocity.x = -velocity.x;
-        }*/
-
 
         position.add(velocity);
         double velocitySquared = velocity.times(Main.ticks * Main.ticks / 10000).dot(velocity);
