@@ -45,9 +45,14 @@ public class MouseInput extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent e) {
         cueHandler.setShooting(false);
+        double powerOfShooting;
+        powerOfShooting = cueHandler.getPowerOfShooting();
+        if(powerOfShooting < 1){
+            powerOfShooting = 0.7;
+        }
         if (ballHandler.checkForMovement()) {
             Main.TurnCounter ++;
-            ballHandler.getWhiteBall().setVelocity(new Vector2D(mouseCords.x - (ballHandler.getWhiteBall().position.x + 14), mouseCords.y - (ballHandler.getWhiteBall().position.y + 14)).normalize().multiply(3));
+            ballHandler.getWhiteBall().setVelocity(new Vector2D(mouseCords.x - (ballHandler.getWhiteBall().position.x + 14), mouseCords.y - (ballHandler.getWhiteBall().position.y + 14)).normalize().multiply(powerOfShooting));
             Main.firstBallHit = true;
             Main.shouldSwap = true;
             Main.firstHit = "None";

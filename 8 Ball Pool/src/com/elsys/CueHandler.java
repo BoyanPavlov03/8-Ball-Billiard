@@ -25,6 +25,10 @@ public class CueHandler {
         this.shooting = shooting;
     }
 
+    public double getPowerOfShooting(){
+        return cue.getPowerShooting();
+    }
+
     public void tick(){
         cue.tick(ballHandler.getWhiteBall(), mousePos, shooting);
     }

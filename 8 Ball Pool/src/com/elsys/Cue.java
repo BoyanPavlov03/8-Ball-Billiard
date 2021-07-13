@@ -20,6 +20,7 @@ public class Cue {
     double addy;
     double maxpull;
     Vector2D oldPos;
+    double powerShooting;
 
     public Cue(Vector2D position, Image image){
         this.position = position;
@@ -38,10 +39,15 @@ public class Cue {
         this.addx = (this.distx * this.whatper) / 100;
         this.addy = (this.disty * this.whatper) / 100;
         this.maxpull = 50;
+        this.powerShooting = 0;
     }
 
     public Image getImage() {
         return image;
+    }
+
+    public double getPowerShooting(){
+        return powerShooting;
     }
 
     void tick(WhiteBall whiteBall, Vector2D mousePos, boolean shooting){
@@ -73,6 +79,8 @@ public class Cue {
                 if(oldPos.distance(newpos) <= maxpull){
                     position.x = oldPos.x + diffx;
                     position.y = oldPos.y + diffy;
+                    double pur = (oldPos.distance(position) / maxpull) * 100;
+                    powerShooting = ((pur * 6) / 100);
                 }
             }else{
                 position.x = oldPos.x;
