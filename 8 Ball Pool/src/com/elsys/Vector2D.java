@@ -33,8 +33,8 @@ public class Vector2D {
     }
 
     public Vector2D multiply(double a){
-        x *= a;
-        y *= a;
+        this.x *= a;
+        this.y *= a;
         return this;
     }
 
@@ -62,7 +62,6 @@ public class Vector2D {
     public double length(){
         return Math.sqrt(this.dot(this));
     }
-
     public Vector2D plus(Vector2D a){
         return new Vector2D(x + a.x, y + a.y);
     }

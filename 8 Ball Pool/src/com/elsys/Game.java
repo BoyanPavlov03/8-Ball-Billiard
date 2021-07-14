@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 
-
 public class Game extends Canvas implements Runnable{
     private boolean isRunning = false;
     private Thread thread;

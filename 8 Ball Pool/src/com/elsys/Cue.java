@@ -13,12 +13,12 @@ public class Cue {
     double yDistance;
     double rotationAngle;
     double dist;
-    double distx;
-    double disty;
-    double whatper;
-    double addx;
-    double addy;
-    double maxpull;
+    double distX;
+    double distY;
+    double whatPer;
+    double addX;
+    double addY;
+    double maxPull;
     Vector2D oldPos;
     double powerShooting;
 
@@ -33,17 +33,13 @@ public class Cue {
         this.rotationAngle = Math.atan2(yDistance, xDistance);
 
         this.dist = mouseCords.distance(new Vector2D(720, 240));
-        this.distx = 720 - mouseCords.x;
-        this.disty = 240 - mouseCords.y;
-        this.whatper = (15 / this.dist) * 100;
-        this.addx = (this.distx * this.whatper) / 100;
-        this.addy = (this.disty * this.whatper) / 100;
-        this.maxpull = 50;
+        this.distX = 720 - mouseCords.x;
+        this.distY = 240 - mouseCords.y;
+        this.whatPer = (15 / this.dist) * 100;
+        this.addX = (this.distX * this.whatPer) / 100;
+        this.addY = (this.distY * this.whatPer) / 100;
+        this.maxPull = 50;
         this.powerShooting = 0;
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public double getPowerShooting(){
@@ -55,34 +51,36 @@ public class Cue {
             mouseCords = mousePos;
             Vector2D whiteBallPos = new Vector2D(whiteBall.position.x + 14, whiteBall.position.y + 14);
             dist = whiteBallPos.distance(mousePos);
-            distx = whiteBallPos.x - mousePos.x;
-            disty = whiteBallPos.y - mousePos.y;
-            whatper = (15 / dist) * 100;
-            addx = (distx * whatper) / 100;
-            addy = (disty * whatper) / 100;
+            distX = whiteBallPos.x - mousePos.x;
+            distY = whiteBallPos.y - mousePos.y;
+            whatPer = (15 / dist) * 100;
+            addX = (distX * whatPer) / 100;
+            addY = (distY * whatPer) / 100;
 
-            position.x = whiteBallPos.x + addx;
-            position.y = whiteBallPos.y + addy;
+            position.x = whiteBallPos.x + addX;
+            position.y = whiteBallPos.y + addY;
             oldPos.x = position.x;
             oldPos.y = position.y;
-        }else{
+        }
+        else{
             // mousePos - current, mouseCords - old
-            double bigdistance = oldPos.distance(mouseCords);
-            double smalldistance = mouseCords.distance(mousePos);
-            double middledistance = oldPos.distance(mousePos);
-            if(bigdistance >= middledistance){
-                double per = (smalldistance / bigdistance) * 100;
-                double diffx = ((oldPos.x - mouseCords.x) * per) / 100;
-                double diffy = ((oldPos.y - mouseCords.y) * per) / 100;
-                Vector2D newpos = new Vector2D(oldPos.x + diffx, oldPos.y + diffy);
+            double bigDistance = oldPos.distance(mouseCords);
+            double smallDistance = mouseCords.distance(mousePos);
+            double middleDistance = oldPos.distance(mousePos);
+            if(bigDistance >= middleDistance){
+                double per = (smallDistance / bigDistance) * 100;
+                double diffX = ((oldPos.x - mouseCords.x) * per) / 100;
+                double diffY = ((oldPos.y - mouseCords.y) * per) / 100;
+                Vector2D newPos = new Vector2D(oldPos.x + diffX, oldPos.y + diffY);
 
-                if(oldPos.distance(newpos) <= maxpull){
-                    position.x = oldPos.x + diffx;
-                    position.y = oldPos.y + diffy;
-                    double pur = (oldPos.distance(position) / maxpull) * 100;
+                if(oldPos.distance(newPos) <= maxPull){
+                    position.x = oldPos.x + diffX;
+                    position.y = oldPos.y + diffY;
+                    double pur = (oldPos.distance(position) / maxPull) * 100;
                     powerShooting = ((pur * 6) / 100);
                 }
-            }else{
+            }
+            else{
                 position.x = oldPos.x;
                 position.y = oldPos.y;
             }
@@ -91,6 +89,7 @@ public class Cue {
 
     void render(Graphics g, boolean shooting) {
         Graphics2D g2d = (Graphics2D) g.create();
+
         if(!shooting) {
             xDistance = mouseCords.x - position.x;
             yDistance = mouseCords.y - position.y;

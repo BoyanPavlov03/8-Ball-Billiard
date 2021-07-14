@@ -47,7 +47,7 @@ public class Ball {
     public boolean DeleteBall(){
         velocity.x = 0;
         velocity.y = 0;
-        if(this instanceof WhiteBall){
+        if(this instanceof WhiteBall) {
             setPosition(new Vector2D(720, 240));
             Main.shouldSwap = true;
             Main.canMoveWhiteBall = true;
